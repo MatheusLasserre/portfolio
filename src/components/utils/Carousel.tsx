@@ -12,7 +12,6 @@ export const Carousel: React.FC<CarouselProps> = ({ children }) => {
   const handleResize = () => {
     if (ref.current) {
       setItemWidth(ref.current.offsetWidth)
-      console.log(ref.current.offsetWidth)
     }
   }
   useEffect(() => {

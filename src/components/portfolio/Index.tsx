@@ -15,19 +15,20 @@ type HeroPortfolioData = [{
 
 export const HeroPortfolio = () => {
     const sampleComponent = portfolioData.map((item, index) => {
+        const imageChildren = item.images.map((image, index) => {
+            return (
+                <img key={`${index}-${item.title}-image`} src={image} alt={item.title} style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                    aspectRatio: '16/9',
+                }}/>
+            )
+        })
         return (
             <FlexColumn key={`${index}-${item.title}-column`} width='100%' maxWidth='unset'>
-                <Carousel children={item.images.map((image, index) => {
-                    return (
-                        <img key={`${index}-${item.title}-image`} src={image} alt={item.title} style={{
-                            width: '100%',
-                            height: '100%',
-                            objectFit: 'cover',
-                            objectPosition: 'center',
-                            aspectRatio: '16/9',
-                        }}/>
-                    )
-                })}/>
+                <Carousel children={imageChildren} key={`${index}-${item.title}-carousel`}/>
                 <CommonText fontSize='20px' fontWeight='700' color='white-90' lineHeight='24px'>
                     {item.title}
                 </CommonText>
@@ -39,7 +40,7 @@ export const HeroPortfolio = () => {
     })
     
   return (
-    <Carousel children={sampleComponent} />
+    <Carousel children={sampleComponent} key='portfolio-carousel'/>
   )
 }
 // Image carousel + image opener
